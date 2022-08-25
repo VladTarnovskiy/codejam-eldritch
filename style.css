@@ -16,7 +16,7 @@ body{
 .ancients-container{
     display: flex;
     flex-wrap: wrap;
-    max-width: 442px;
+    max-width: 450px;
     width: 100%;
     margin-top: auto;
     margin-bottom: auto;
@@ -31,6 +31,14 @@ body{
     background-position: center;
     margin-right: 20px;
     margin-bottom: 20px;
+    border: goldenrod 2px solid;
+    transition: all 0.5s;
+}
+
+.ancient-item:hover{
+   transform: scale(1.1);
+   border: red 2px solid;
+   cursor: pointer;
 }
 
 .ancient-first{
@@ -71,6 +79,14 @@ body{
     color: goldenrod;
     border: goldenrod 2px solid;
     text-align: center;
+    transition: all 0.5s;
+    background-color: rgba(233, 184, 25, 0.2);
+}
+
+.level-item:hover, .button-mix-deck:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: green;
 }
 
 .deck-container{
@@ -109,6 +125,11 @@ body{
     border-radius: 30px;
     background-color: blue;
     margin-right: 20px;
+    border: goldenrod 2px solid;
+    text-align: center;
+    color: rgb(130, 226, 230);
+    font-weight: 800;
+    font-size: 22px;
 }
 
 .green{
@@ -116,7 +137,7 @@ body{
 }
 
 .brown{
-    background-color: rgb(198, 77, 30);
+    background-color: rgb(193, 167, 19);
 }
 
 .blue{
@@ -124,9 +145,42 @@ body{
     margin-right: 0;
 }
 
-.deck{
+.button-mix-deck{
+    height: 30px;
+    width: 100px;
+    margin-bottom: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: goldenrod;
+    border: goldenrod 2px solid;
+    text-align: center;
+    transition: all 0.5s;
+    vertical-align: middle;
+    padding-top: 5px;
+    background-color: rgba(233, 184, 25, 0.2);
+    margin-top: 20px;
+}
+
+.deck, .card{
     background-image: url(./assets/mythicCardBackground.png);
-    height: 200px;
-    width: 150px;
+    height: 190px;
+    width: 130px;
     margin-top: 10px;
+    border: goldenrod 2px solid;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.deck:hover{
+    border: red 2px solid;
+    box-shadow: 12px 12px 2px 1px rgba(225, 24, 24, 0.2);;
+    cursor: pointer;
+ }
+
+.card{
+    display: none;
+}
+
+.active{
+    display: block;
 }
