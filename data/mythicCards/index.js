@@ -86,8 +86,6 @@ function getDeck() {
     setStageThree.push(blue.splice(getRandomNum((blue.length - 1)), 1))
   }
 
-  // const f = numberAncient
-
   function click() {
     card.classList.add('active')
     let x
@@ -130,17 +128,11 @@ function getDeck() {
       alert('Card ended! Pleace, choose new ancient!!')
     }
 
-    // if (f == numberAncient){
-    //   deck.removeEventListener('click', click, false)
-    //   console.log(flagAncient[numberAncient].ansient)
-    //   console.log(flagAncient[0].ansient)
-    // }
-
-    console.log(setStageOne.length)
-    console.log(setStageTwo.length)
-    console.log(setStageThree.length)
+    ancientsContainer.addEventListener('click', ()=>{
+      deck.removeEventListener('click', click, false)
+    })
   }
-  deck.removeEventListener('click', click, false)
+
   deck.addEventListener('click', click, false)
 }
 
@@ -152,8 +144,7 @@ function displayTraker() {
 
       ansientItems.forEach((item, index) => {
         item.classList.remove('ancient-item-active')
-      }
-      )
+      })
 
       item.classList.add('ancient-item-active')
 
@@ -180,25 +171,11 @@ function displayTraker() {
       stageThirdblue.textContent = board[2][2]
 
       numberAncient = index
-      flagAncient.forEach((item, index) => {
-        if (numberAncient == index) {
-          item.ansient = 'true'
-        } else {
-          item.ansient = 'false'
-        }
-
-      })
-
-      console.log(flagAncient)
+    
       getDeck()
-
     }
-
+    
     item.addEventListener('click', fuck, false)
-    if(item.classList.contains('ancient-item-active')){
-      item.removeEventListener('click', fuck, false)
-      console.log('WEVWevfwrevfw  e')
-    }
   })
 }
 
@@ -223,3 +200,7 @@ function changeDificulties() {
 }
 
 changeDificulties()
+
+
+
+
