@@ -228,3 +228,7 @@ body{
 .active{
     display: block;
 }
+
+.stage-active{
+    color: red;
+}

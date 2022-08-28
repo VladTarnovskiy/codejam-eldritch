@@ -1,3 +1,4 @@
+
 import cardsDataBrown from './brown/index.js';
 import cardsDataBlue from './blue/index.js';
 import cardsDataGreen from './green/index.js';
@@ -18,6 +19,10 @@ const stageSecondblue = document.querySelector('.stage-second > .stage-set > .bl
 const stageThirdGreen = document.querySelector('.stage-third > .stage-set > .green')
 const stageThirdBrown = document.querySelector('.stage-third > .stage-set > .brown')
 const stageThirdblue = document.querySelector('.stage-third > .stage-set > .blue')
+
+const stageOneTitle = document.querySelector('.stage-first > .stage-title')
+const stageTwoTitle = document.querySelector('.stage-second > .stage-title')
+const stageThirdTitle = document.querySelector('.stage-third > .stage-title')
 
 const deck = document.querySelector('.deck')
 const card = document.querySelector('.card')
@@ -93,6 +98,7 @@ function getDeck() {
     if (setStageOne.length > 0) {
       x = setStageOne.splice(getRandomNum((setStageOne.length - 1)), 1)
       card.style.backgroundImage = `url(${x[0][0].cardFace})`
+      stageOneTitle.classList.add('stage-active')
       if (x[0][0].color == 'green') {
         stageFirstGreen.textContent = stageFirstGreen.textContent - 1
       } else if (x[0][0].color == 'brown') {
@@ -104,6 +110,7 @@ function getDeck() {
     } else if (setStageTwo.length > 0) {
       x = setStageTwo.splice(getRandomNum((setStageTwo.length - 1)), 1)
       card.style.backgroundImage = `url(${x[0][0].cardFace})`
+      stageTwoTitle.classList.add('stage-active')
       if (x[0][0].color == 'green') {
         stageSecondGreen.textContent = stageSecondGreen.textContent - 1
       } else if (x[0][0].color == 'brown') {
@@ -115,6 +122,7 @@ function getDeck() {
     } else if (setStageThree.length > 0) {
       x = setStageThree.splice(getRandomNum((setStageThree.length - 1)), 1)
       card.style.backgroundImage = `url(${x[0][0].cardFace})`
+      stageThirdTitle.classList.add('stage-active')
       if (x[0][0].color == 'green') {
         stageThirdGreen.textContent = stageThirdGreen.textContent - 1
       } else if (x[0][0].color == 'brown') {
@@ -130,6 +138,9 @@ function getDeck() {
 
     ancientsContainer.addEventListener('click', ()=>{
       deck.removeEventListener('click', click, false)
+      stageOneTitle.classList.remove('stage-active')
+      stageTwoTitle.classList.remove('stage-active')
+      stageThirdTitle.classList.remove('stage-active')
     })
   }
 
