@@ -21,6 +21,7 @@ body{
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 20px;
+    position: relative;
 }
 
 .ancient-item{
@@ -42,8 +43,25 @@ body{
    cursor: pointer;
 }
 
+.choose-ancient{
+    position: absolute;
+    top:-50px;
+    left:50%;
+    transform: translateX(-50%);
+    color: goldenrod;
+    font-size: 32px;
+    text-decoration: underline;
+}
 
-
+.choose-level{
+    top:-80px;
+    font-size: 26px;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    color: goldenrod;
+    text-decoration: underline;
+}
 
 .ancient-item-active{
     border: red 2px solid;
@@ -78,6 +96,7 @@ body{
     margin-top: auto;
     margin-bottom: auto;
     max-height: 300px;
+    position: relative;
 }
 
 .level-item{
