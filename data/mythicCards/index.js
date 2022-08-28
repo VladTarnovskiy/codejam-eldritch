@@ -19,123 +19,147 @@ const stageThirdGreen = document.querySelector('.stage-third > .stage-set > .gre
 const stageThirdBrown = document.querySelector('.stage-third > .stage-set > .brown')
 const stageThirdblue = document.querySelector('.stage-third > .stage-set > .blue')
 
+const deck = document.querySelector('.deck')
+const card = document.querySelector('.card')
+
 let numberAncient
-let green = cardsDataGreen.slice()
-let brown = cardsDataBrown.slice()
-let blue = cardsDataBlue.slice()
+let green
+let brown
+let blue
 let board
 
-function getRandomNum (x) {
+let flagAncient = [
+  { ansient: 'false' },
+  { ansient: 'false' },
+  { ansient: 'false' },
+  { ansient: 'false' }
+]
+
+function getRandomNum(x) {
   return (Math.round(Math.random() * x))
 }
 
-function getDeck () {
+function getDeck() {
+  let countstageFirstGreen = ancientsData[numberAncient].firstStage.greenCards
+  let countstageFirstBrown = ancientsData[numberAncient].firstStage.brownCards
+  let countstageFirstblue = ancientsData[numberAncient].firstStage.blueCards
 
   let setStageOne = []
   let setStageTwo = []
   let setStageThree = []
 
-  let countstageFirstGreen = ancientsData[numberAncient].firstStage.greenCards 
-  let countstageFirstBrown = ancientsData[numberAncient].firstStage.brownCards
-  let countstageFirstblue = ancientsData[numberAncient].firstStage.blueCards
-  const stageFirst = [countstageFirstGreen,countstageFirstBrown, countstageFirstblue]
-
-  for (let i=0; i < countstageFirstGreen; i++){
-    setStageOne.push(green.splice(getRandomNum((green.length-1)),1))
+  for (let i = 0; i < countstageFirstGreen; i++) {
+    setStageOne.push(green.splice(getRandomNum((green.length - 1)), 1))
   }
-  for (let i=0; i < countstageFirstBrown; i++){
-    setStageOne.push(brown.splice(getRandomNum((brown.length-1)),1))
+  for (let i = 0; i < countstageFirstBrown; i++) {
+    setStageOne.push(brown.splice(getRandomNum((brown.length - 1)), 1))
   }
-  for (let i=0; i < countstageFirstblue; i++){
-    setStageOne.push(blue.splice(getRandomNum((blue.length-1)),1))
+  for (let i = 0; i < countstageFirstblue; i++) {
+    setStageOne.push(blue.splice(getRandomNum((blue.length - 1)), 1))
   }
 
-  let countstageSecondGreen = ancientsData[numberAncient].secondStage.greenCards 
+  let countstageSecondGreen = ancientsData[numberAncient].secondStage.greenCards
   let countstageSecondBrown = ancientsData[numberAncient].secondStage.brownCards
   let countstageSecondblue = ancientsData[numberAncient].secondStage.blueCards
-  const stageSecond = [countstageSecondGreen,countstageSecondBrown, countstageSecondblue]
 
-  for (let i=0; i < countstageSecondGreen; i++){
-    setStageTwo.push(green.splice(getRandomNum((green.length-1)),1))
+  for (let i = 0; i < countstageSecondGreen; i++) {
+    setStageTwo.push(green.splice(getRandomNum((green.length - 1)), 1))
   }
-  for (let i=0; i < countstageSecondBrown; i++){
-    setStageTwo.push(brown.splice(getRandomNum((brown.length-1)),1))
+  for (let i = 0; i < countstageSecondBrown; i++) {
+    setStageTwo.push(brown.splice(getRandomNum((brown.length - 1)), 1))
   }
-  for (let i=0; i < countstageSecondblue; i++){
-    setStageTwo.push(blue.splice(getRandomNum((blue.length-1)),1))
+  for (let i = 0; i < countstageSecondblue; i++) {
+    setStageTwo.push(blue.splice(getRandomNum((blue.length - 1)), 1))
   }
 
-  let countstageThirdGreen = ancientsData[numberAncient].thirdStage.greenCards 
+  let countstageThirdGreen = ancientsData[numberAncient].thirdStage.greenCards
   let countstageThirdBrown = ancientsData[numberAncient].thirdStage.brownCards
   let countstageThirdblue = ancientsData[numberAncient].thirdStage.blueCards
-  const stageThird = [countstageThirdGreen,countstageThirdBrown, countstageThirdblue]
 
-  for (let i=0; i < countstageThirdGreen; i++){
-    setStageThree.push(green.splice(getRandomNum((green.length-1)),1))
+  for (let i = 0; i < countstageThirdGreen; i++) {
+    setStageThree.push(green.splice(getRandomNum((green.length - 1)), 1))
   }
-  for (let i=0; i < countstageThirdBrown; i++){
-    setStageThree.push(brown.splice(getRandomNum((brown.length-1)),1))
+  for (let i = 0; i < countstageThirdBrown; i++) {
+    setStageThree.push(brown.splice(getRandomNum((brown.length - 1)), 1))
   }
-  for (let i=0; i < countstageThirdblue; i++){
-    setStageThree.push(blue.splice(getRandomNum((blue.length-1)),1))
+  for (let i = 0; i < countstageThirdblue; i++) {
+    setStageThree.push(blue.splice(getRandomNum((blue.length - 1)), 1))
   }
-  
-  let setCommon = setStageOne.concat(setStageTwo, setStageThree)
 
-  const deck = document.querySelector('.deck')
-  const card = document.querySelector('.card')
+  // const f = numberAncient
 
-  deck.addEventListener('click', () => {
+  function click() {
     card.classList.add('active')
     let x
-    if (setStageOne.length>0){
-      x = setStageOne.splice(getRandomNum((setStageOne.length-1)),1)
-      if (x[0][0].color == 'green'){
-        stageFirstGreen.textContent = stageFirstGreen.textContent -1
-      } else if (x[0][0].color == 'brown'){
+
+    if (setStageOne.length > 0) {
+      x = setStageOne.splice(getRandomNum((setStageOne.length - 1)), 1)
+      card.style.backgroundImage = `url(${x[0][0].cardFace})`
+      if (x[0][0].color == 'green') {
+        stageFirstGreen.textContent = stageFirstGreen.textContent - 1
+      } else if (x[0][0].color == 'brown') {
         stageFirstBrown.textContent = stageFirstBrown.textContent - 1
-      } else if (x[0][0].color == 'blue'){
+      } else if (x[0][0].color == 'blue') {
         stageFirstblue.textContent = stageFirstblue.textContent - 1
       }
-      
-    } else if (setStageTwo.length>0){
-      x = setStageTwo.splice(getRandomNum((setStageTwo.length-1)),1)
-      if (x[0][0].color == 'green'){
-        stageSecondGreen.textContent = stageSecondGreen.textContent -1
-      } else if (x[0][0].color == 'brown'){
+
+    } else if (setStageTwo.length > 0) {
+      x = setStageTwo.splice(getRandomNum((setStageTwo.length - 1)), 1)
+      card.style.backgroundImage = `url(${x[0][0].cardFace})`
+      if (x[0][0].color == 'green') {
+        stageSecondGreen.textContent = stageSecondGreen.textContent - 1
+      } else if (x[0][0].color == 'brown') {
         stageSecondBrown.textContent = stageSecondBrown.textContent - 1
-      } else if (x[0][0].color == 'blue'){
+      } else if (x[0][0].color == 'blue') {
         stageSecondblue.textContent = stageSecondblue.textContent - 1
       }
 
-    } else if (setStageThree.length>0){
-      x = setStageThree.splice(getRandomNum((setStageThree.length-1)),1)
-      if (x[0][0].color == 'green'){
-        stageThirdGreen.textContent = stageThirdGreen.textContent -1
-      } else if (x[0][0].color == 'brown'){
+    } else if (setStageThree.length > 0) {
+      x = setStageThree.splice(getRandomNum((setStageThree.length - 1)), 1)
+      card.style.backgroundImage = `url(${x[0][0].cardFace})`
+      if (x[0][0].color == 'green') {
+        stageThirdGreen.textContent = stageThirdGreen.textContent - 1
+      } else if (x[0][0].color == 'brown') {
         stageThirdBrown.textContent = stageThirdBrown.textContent - 1
-      } else if (x[0][0].color == 'blue'){
+      } else if (x[0][0].color == 'blue') {
         stageThirdblue.textContent = stageThirdblue.textContent - 1
       }
-    } 
-    else {
-      card.classList.remove('active')
-      alert('Deck Ended! Choose new ancient!!')
-    }
-    console.log(x[0][0].cardFace)
-    card.style.backgroundImage = `url(${x[0][0].cardFace})`
-  })
 
-  console.log(setStageOne)
-  console.log(setStageTwo)
-  console.log(setStageThree)
-  console.log(green)
-  console.log(setCommon)
+    } else {
+      card.classList.remove('active')
+      alert('Card ended! Pleace, choose new ancient!!')
+    }
+
+    // if (f == numberAncient){
+    //   deck.removeEventListener('click', click, false)
+    //   console.log(flagAncient[numberAncient].ansient)
+    //   console.log(flagAncient[0].ansient)
+    // }
+
+    console.log(setStageOne.length)
+    console.log(setStageTwo.length)
+    console.log(setStageThree.length)
+  }
+  deck.removeEventListener('click', click, false)
+  deck.addEventListener('click', click, false)
 }
 
-function displayTraker () {
-  ansientItems.forEach((item,index) => {
-    item.addEventListener('click', (e) => {
+function displayTraker() {
+  ansientItems.forEach((item, index) => {
+
+    function fuck() {
+      card.classList.remove('active')
+
+      ansientItems.forEach((item, index) => {
+        item.classList.remove('ancient-item-active')
+      }
+      )
+
+      item.classList.add('ancient-item-active')
+
+      green = cardsDataGreen.slice()
+      brown = cardsDataBrown.slice()
+      blue = cardsDataBlue.slice()
 
       board = [
         [ancientsData[index].firstStage.greenCards, ancientsData[index].firstStage.brownCards, ancientsData[index].firstStage.blueCards],
@@ -148,7 +172,7 @@ function displayTraker () {
       stageFirstblue.textContent = board[0][2]
 
       stageSecondGreen.textContent = board[1][0]
-      stageSecondBrown.textContent = board[1][1] 
+      stageSecondBrown.textContent = board[1][1]
       stageSecondblue.textContent = board[1][2]
 
       stageThirdGreen.textContent = board[2][0]
@@ -156,12 +180,46 @@ function displayTraker () {
       stageThirdblue.textContent = board[2][2]
 
       numberAncient = index
-      getDeck ()
-    })
+      flagAncient.forEach((item, index) => {
+        if (numberAncient == index) {
+          item.ansient = 'true'
+        } else {
+          item.ansient = 'false'
+        }
+
+      })
+
+      console.log(flagAncient)
+      getDeck()
+
+    }
+
+    item.addEventListener('click', fuck, false)
+    if(item.classList.contains('ancient-item-active')){
+      item.removeEventListener('click', fuck, false)
+      console.log('WEVWevfwrevfw  e')
+    }
   })
 }
 
 displayTraker()
 
+function changeDificulties() {
+  const levelButton = document.querySelectorAll('.level-item')
 
+  levelButton.forEach((item, index) => {
+    item.addEventListener('click', (e) => {
 
+      levelButton.forEach((item, index) => {
+        item.classList.remove('level-item-active')
+      })
+
+      if (e.target) {
+        e.target.classList.add('level-item-active')
+      }
+
+    })
+  })
+}
+
+changeDificulties()
